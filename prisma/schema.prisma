@@ -11,6 +11,15 @@ datasource db {
 }
 
 model Asset {
-  id     String @id @map("_id")
+  id     String  @id @map("_id")
   symbol String
+  Order  Order[]
+}
+
+model Order {
+  id       String @id @default(cuid()) @map("_id")
+  asset_id String
+  price    Float
+  status   String @default("pending")
+  asset    Asset  @relation(fields: [asset_id], references: [id])
 }
