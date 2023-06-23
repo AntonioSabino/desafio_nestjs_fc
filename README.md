@@ -1,73 +1,55 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Desafio Nest.js com Docker
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Este é um projeto de uma aplicação Nest.js com Docker que roda na porta 3000. A aplicação expõe 4 rotas de API Rest para manipulação de assets e orders.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Rotas
 
-## Description
+- **Listar assets** - POST `/api/assets`
+- **Criar assets** - GET `/api/assets`
+- **Criar orders** - POST `/api/orders`
+- **Listar orders** - GET `/api/orders`
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Dados
 
-## Installation
+### Asset
 
-```bash
-$ npm install
-```
+Um asset possui os seguintes dados:
 
-## Running the app
+- **id** (informado pelo usuário)
+- **symbol** (símbolo do ativo)
 
-```bash
-# development
-$ npm run start
+### Order
 
-# watch mode
-$ npm run start:dev
+Uma order possui os seguintes dados:
 
-# production mode
-$ npm run start:prod
-```
+- **id** (gerado automaticamente pelo banco)
+- **asset_id** (relacionado com Asset)
+- **price**
+- **status** (open, pending, closed) (não pode ser enviado no POST)
 
-## Test
+## ORM e Banco de Dados
 
-```bash
-# unit tests
-$ npm run test
+Neste projeto, utilizamos o Prisma ORM juntamente com o banco de dados MongoDB. Para o banco de dados, utilizamos a imagem `bitnami/mongodb:5.0.17`.
 
-# e2e tests
-$ npm run test:e2e
+## Como executar o projeto
 
-# test coverage
-$ npm run test:cov
-```
+Para executar este projeto usando a extensão Dev Containers do Visual Studio Code, siga as instruções abaixo:
 
-## Support
+1. Certifique-se de ter o Docker instalado em sua máquina.
+2. Clone este repositório em seu ambiente de desenvolvimento.
+3. Abra o Visual Studio Code.
+4. Instale a extensão "Remote - Containers" se ainda não estiver instalada.
+5. Na barra lateral do Visual Studio Code, clique no ícone "><" (canto inferior esquerdo) para abrir o menu de comandos remotos.
+6. Selecione a opção "Reopen in Container" para abrir o projeto no contêiner de desenvolvimento.
+7. Aguarde o contêiner ser configurado e as dependências serem instaladas.
+8. Após o processo de configuração, abra um novo terminal dentro do Visual Studio Code.
+9. Execute o comando `npm run start:dev` para iniciar a aplicação.
+10. A aplicação estará disponível em `http://localhost:3000`.
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+Agora você pode usar as rotas da API para listar e criar assets e orders.
 
-## Stay in touch
+## Considerações Finais
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+Este projeto foi desenvolvido com base nos requisitos fornecidos. Caso precise de mais informações ou tenha alguma dúvida, sinta-se à vontade para entrar em contato.
 
-## License
-
-Nest is [MIT licensed](LICENSE).
+Divirta-se codificando!
